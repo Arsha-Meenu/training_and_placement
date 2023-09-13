@@ -1,0 +1,93 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Add New User{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+
+<section class="banner-area relative " id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12 text-white text-uppercase ">
+                <form class="container " method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label>Select User Role</label>
+                            {{form.type}}
+                        </div>
+                        <div class="col-md-6">
+                            <label>Select User Gender</label>
+                            {{form.gender}}
+                        </div>
+
+                    </div>
+                    <div class="row mt-3">
+                        <div class=" col-md-6">
+                            <label>FirstName</label>
+                            {{form.first_name}}
+                        </div>
+                        <div class=" col-md-6">
+                            <label>LastName</label>
+                            {{form.last_name}}
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class=" col-md-6">
+                            <label>Username</label>
+                            {{form.name}}
+                        </div>
+                        <div class=" col-md-6">
+                            <label>Email Address</label>
+                            {{form.email}}
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class=" col-md-6">
+                            <label>Contact Number</label>
+                            {{form.mobile_number}}
+                        </div>
+                        <div class=" col-md-6">
+                            <label>User Profile Image</label>
+                            {{form.profile_image}}
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label>Current Address</label>
+                            {{form.current_address}}
+                        </div>
+                        <div class=" col-md-6">
+                            <label>Permanent Address</label>
+                            {{form.permanent_address}}
+                        </div>
+                    </div>
+                    {% if form.password %}
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label>Password</label>
+                            {{form.password}}
+                        </div>
+                        <div class=" col-md-6">
+                            <label>Confirm Password</label>
+                            {{form.confirm_password}}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-md-11">
+                            <input type="submit" value="Submit" class="btn mt-3 btn-success" style=" color: white; font-size: larger; width: 8rem;">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

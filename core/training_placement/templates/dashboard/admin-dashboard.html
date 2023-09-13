@@ -1,0 +1,175 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}{{user}} Dashboard{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<!-- start banner Area -->
+<section class="banner-area relative " id="home">
+	<div class="overlay overlay-bg"></div>
+	<div class="container">
+		<div class="row d-flex align-items-center justify-content-center">
+			<div class="about-content col-lg-12">
+				<h1 class="text-white">
+					{{user}} Dashboard
+				</h1>
+				<p class="text-white link-nav"><a href="{% url 'training_placement:home' %}">Home </a><span class="lnr lnr-arrow-right"></span>
+					<a href="{% url 'training_placement:admin-dashboard' %}">{{user}} Dashboard</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End banner Area -->
+<!-- Start popular-courses Area -->
+<section class="popular-courses-area section-gap courses-page">
+	<div class="container">
+		<div class="row">
+			<div class="single-popular-carusel col-lg-3 col-md-6">
+				<div class="thumb-wrap relative">
+					<div class="thumb relative">
+						<img class="img-fluid  rounded-circle" src="{% static 'img/add_training.avif' %}" alt="">
+					</div>
+				</div>
+				<div class="details">
+					<a href="{% url 'training_placement:add-training' %}">
+						<h4>
+							Add Training
+						</h4>
+					</a>
+
+				</div>
+			</div>
+			<div class="single-popular-carusel col-lg-3 col-md-6">
+				<div class="thumb-wrap relative">
+					<div class="thumb relative">
+						<img class="img-fluid rounded-circle" src="{% static 'img/add_jobs.jpg' %}" alt="" >
+					</div>&nbsp;
+				</div>
+				<div class="details">
+					<a href="{% url 'training_placement:add-job' %}">
+						<h4>
+							Add Job
+						</h4>
+					</a>
+				</div>
+			</div>
+			<div class="single-popular-carusel col-lg-3 col-md-6">
+				<div class="thumb-wrap relative">
+					<div class="thumb relative">
+						<img class="img-fluid rounded-circle" src="{% static 'img/admin_report.png' %}" alt="">
+					</div>&nbsp;
+				</div>
+				<div class="details">
+					<a href="{% url 'training_placement:admin-report' %}">
+						<h4>
+							Admin Report
+						</h4>
+					</a>
+				</div>
+			</div>
+			<div class="single-popular-carusel col-lg-3 col-md-6">
+				<div class="thumb-wrap relative">
+					<div class="thumb relative">
+						<img class="img-fluid rounded-circle" src="{% static 'img/atudent_report.avif' %}" alt="">
+					</div>
+				</div>
+				<div class="details">
+					<a href="{% url 'training_placement:student-report' %}">
+						<h4>
+							Student Report
+						</h4>
+					</a>
+				</div>
+			</div>
+			<div class="single-popular-carusel col-lg-3 col-md-6">
+				<div class="thumb-wrap relative">
+					<div class="thumb relative">
+						<img class="img-fluid rounded-circle" src="{% static 'img/tpo_report.png' %}" alt="">
+					</div>
+				</div>
+				<div class="details">
+					<a href="{% url 'training_placement:TPO-report' %}">
+						<h4>
+							TPO Report
+						</h4>
+					</a>
+				</div>
+			</div>
+			<div class="single-popular-carusel col-lg-3 col-md-6">
+				<div class="thumb-wrap relative">
+					<div class="thumb relative">
+						<img class="img-fluid rounded-circle" src="{% static 'img/training_report.jpg' %}" alt="">
+					</div>
+				</div>
+				<div class="details">
+					<a href="{% url 'training_placement:training-report' %}">
+						<h4>
+							Training Report
+						</h4>
+					</a>
+				</div>
+			</div>
+			<div class="single-popular-carusel col-lg-3 col-md-6">
+				<div class="thumb-wrap relative">
+					<div class="thumb relative">
+						<img class="img-fluid rounded-circle" src="{% static 'img/job_report.png' %}" alt="">
+					</div>
+				</div>
+				<div class="details">
+					<a href="{% url 'training_placement:job-report' %}">
+						<h4>
+							Job Report
+						</h4>
+					</a>
+				</div>
+			</div>
+			<div class="single-popular-carusel col-lg-3 col-md-6">
+				<div class="thumb-wrap relative">
+					<div class="thumb relative">
+						<img class="img-fluid rounded-circle" src="{% static 'img/job_registration.avif' %}" alt="">
+					</div>
+				</div>
+				<div class="details">
+					<a href="{% url 'training_placement:job-registration' %}">
+						<h4>
+							Job Registration
+						</h4>
+					</a>
+				</div>
+			</div>
+			<div class="single-popular-carusel col-lg-3 col-md-6">
+				<div class="thumb-wrap relative">
+					<div class="thumb relative">
+						<img class="img-fluid rounded-circle" src="{% static 'img/training_registration.avif' %}" alt="">
+					</div>
+				</div>
+				<div class="details">
+					<a href="{% url 'training_placement:training-registration' %}">
+						<h4>
+							Training Registration
+						</h4>
+					</a>
+				</div>
+			</div>
+			<div class="single-popular-carusel col-lg-3 col-md-6">
+				<div class="thumb-wrap relative">
+					<div class="thumb relative">
+						<img class="img-fluid rounded-circle" src="{% static 'img/add_user.avif' %}" alt="">
+					</div>
+				</div>
+				<div class="details">
+					<a href="{% url 'training_placement:add-new-user' %}">
+						<h4>
+							Add User
+						</h4>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End popular-courses Area -->
+
+
+
+{% endblock %}

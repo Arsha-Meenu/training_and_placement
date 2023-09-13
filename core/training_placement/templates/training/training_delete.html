@@ -1,0 +1,38 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Training Delete{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+
+<!-- start banner Area -->
+<section class="banner-area relative " id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white" style="font-size:38px">
+                    {{object|title}} Deletion
+                </h1>
+                <p class="text-white link-nav"><a href="{% url 'training_placement:home' %}">Home </a><span class="lnr lnr-arrow-right"></span>
+                    <a href="{% url 'training_placement:training-delete training.id' %}"> {{object|title}} Deletion</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<section class="events-list-area section-gap event-page-lists">
+    <div class="container">
+        <div class="row align-items-center">
+            <form action="" method="post">
+                {% csrf_token %}
+                <p style="color:red">Are you sure you want to delete "{{ object }}"?</p>
+                <input type="submit" value="Confirm" />
+                <a href="{% url 'training_placement:training-report' %}" class="btn">Cancel</a>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock  %}

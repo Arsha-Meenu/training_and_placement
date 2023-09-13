@@ -1,0 +1,61 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}All Trainings{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<!-- start banner Area -->
+<section class="banner-area relative " id="home">
+	<div class="overlay overlay-bg"></div>
+	<div class="container">
+		<div class="row d-flex align-items-center justify-content-center">
+			<div class="about-content col-lg-12">
+				<h1 class="text-white">
+					All Trainings
+				</h1>
+				<p class="text-white link-nav"><a href="{% url 'training_placement:home' %}">Home </a><span class="lnr lnr-arrow-right"></span>
+					<a href="{% url 'training_placement:all-trainings' %}"> All Trainings</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End banner Area -->
+<!-- Start events-list Area -->
+<section class="events-list-area section-gap event-page-lists">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Sr.No</th>
+                    <th scope="col">Training Title</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for training in trainings %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{training.title}}</td>
+                    <td>{{training.subject}}</td>
+                    <td>{{training.training_date}}</td>
+                    <td>
+                        <button class="btn btn-info"><a href="{% url 'training_placement:download-training-file' pk=training.id %}" class="text-white">Training File</a> </button>&nbsp;
+                        <button class="btn btn-success"><a href="{% url 'training_placement:training-detail' training.id %}" class=" text-white">Details</a></button>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!--        <div class="row align-items-center">-->
+        <!--            <a class="text-uppercase primary-btn mx-auto mt-40" href="#">Load more courses</a>-->
+        <!--        </div>-->
+    </div>
+</section>
+<!-- End events-list Area -->
+
+{% endblock %}

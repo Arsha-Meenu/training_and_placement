@@ -1,0 +1,69 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Add Job{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<!-- start banner Area -->
+<section class="banner-area relative ">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Add Trainings
+                </h1>
+                <p class="text-white link-nav"><a href="{% url 'training_placement:home' %}">Home </a><span class="lnr lnr-arrow-right"></span>
+                    <a href="{% url 'training_placement:add-training' %}"> Add Trainings</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<section class="banner-area relative " id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12 text-white text-uppercase ">
+                <form class="container " method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+
+                    <div class="row mt-3">
+                         <div class="col-md-6">
+                            <label>Select Training Subject</label>
+                            {{form.subject}}
+                        </div>
+                        <div class=" col-md-6">
+                            <label>Training Title</label>
+                            {{form.title}}
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class=" col-md-6">
+                            <label>Training Date</label>
+                            {{form.training_date}}
+                        </div>
+                        <div class=" col-md-6">
+                            <label>Training Content File</label>
+                            {{form.content_file}}
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label>Description</label>
+                            {{form.description}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-11">
+                        <input type="submit" value="Submit" class="btn mt-3 btn-success" style=" color: white; font-size: larger; width: 8rem;">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

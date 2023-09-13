@@ -1,0 +1,46 @@
+{% load static %}
+<header id="header" >
+    <div class="container main-menu">
+        <div class="row align-items-center justify-content-between d-flex">
+            <div id="logo">
+                <a href="{% url 'training_placement:home' %}"><img src="{% static 'img/main-logo.png' %}" width="170px" height="80px" alt="" title="" /></a>
+            </div>
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="{% url 'training_placement:home' %}">Home</a></li>
+                    <li><a href="{% url 'training_placement:about' %}">About</a></li>
+                    <li><a href="{% url 'training_placement:contact' %}">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="menu-has-children"><a href="">My Account</a>
+                        <ul>
+                            <li><a href="{% url 'training_placement:admin-edit'  request.user.id %}"> {{user.type}} Profile </a></li>
+                            {% if user.type == 'TPO' %}
+                            <li><a href="{% url 'training_placement:tpo-dashboard' %}">Dashboard</a></li>
+                            {% elif user.type == 'Student' %}
+                            <li><a href="{% url 'training_placement:student-dashboard' %}">Dashboard</a></li>
+                            {% elif user.type == 'Admin' %}
+                            <li><a href="{% url 'training_placement:admin-dashboard' %}">Dashboard</a></li>
+                            {% endif %}
+                            <li><a href="{% url 'training_placement:password-change' %}" >Change Password </a></li>
+                            <li><a href="{% url 'training_placement:logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li ><a class="text-white">Welcome ,&nbsp; <span class="text-danger">{{ user.name }}</span>&nbsp; !!!</a></li>
+                    {% else %}
+                    <li><a href="{% url 'training_placement:all-trainings' %}">All Trainings</a></li>
+                    <li><a href="{% url 'training_placement:all-jobs' %}">All Jobs</a></li>
+                    <li class="menu-has-children"> <a href="">Login</a>
+                        <ul>
+                            <li><a href="{% url 'training_placement:login' %}">Admin</a></li>
+                            <li><a href="{% url 'training_placement:login' %}">Students</a></li>
+                            <li><a href="{% url 'training_placement:login' %}">TPO</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <!-- #nav-menu-container -->
+        </div>
+    </div>
+</header>
+<!-- #header -->

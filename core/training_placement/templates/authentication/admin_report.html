@@ -1,0 +1,63 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Admin  Report{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<!-- start banner Area -->
+<section class="banner-area relative " id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                   All Admin
+                </h1>
+                <p class="text-white link-nav"><a href="">Home </a><span class="lnr lnr-arrow-right"></span>
+                    <a href=""> All Admin</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start events-list Area -->
+<section class="events-list-area section-gap event-page-lists">
+    <div class="container">
+        <div class="row align-items-center">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Sr.No</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile Number</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for admin in admins %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    {% if admin.profile_image %}
+                    <td><img src="{{admin.profile_image.url}}"  alt="Profile Image" width="20%" height="20%"></td>
+                    {% else %}
+                    <td><img src="{% static 'img/standby_profile.png' %}"  alt="Profile Image" width="20%" height="20%"></td>
+                    {% endif %}
+                    <td>{{admin.name}}</td>
+                    <td>{{admin.email}}</td>
+                    <td>{{admin.mobile_number}}</td>
+                    <td>
+                        <button class="btn btn-info"><a href="{% url 'training_placement:admin-edit' pk=admin.id %}" class="text-white">Edit</a> </button>&nbsp;
+                        <button class="btn btn-success"><a href="{% url 'training_placement:admin-delete' pk=admin.id %}" class=" text-white">Delete</a></button>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!-- End events-list Area -->
+
+{% endblock %}

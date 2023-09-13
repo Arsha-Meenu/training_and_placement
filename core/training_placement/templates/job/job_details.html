@@ -1,0 +1,74 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}All Jobs{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+		  <!-- start banner Area -->
+			<section class="banner-area relative about-banner" id="home">
+				<div class="overlay overlay-bg"></div>
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								{{job}} details
+							</h1>
+							<p class="text-white link-nav"><a href="{% url 'training_placement:home' %}">Home </a>
+								<span class="lnr lnr-arrow-right"></span>  <a href="{% url 'training_placement:job-detail' %}"> {{job}} details</a></p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->
+
+			<!-- Start event-details Area -->
+			<section class="event-details-area section-gap">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8 event-details-left">
+							<div class="main-img">
+								<img src="{{job.company_logo.url}}" style="width:20%" alt="company_logo" >
+								<p class="text-danger">{{job.company}} - {{job.location}} </p>
+							</div>
+							<div class="details-content">
+								<a href="#">
+									<h4>{{job.title|upper}}</h4>
+								</a>
+								<p>
+									{{job.description}}
+								</p>
+
+							</div>
+
+						</div>
+						<div class="col-lg-4 event-details-right">
+							<div class="single-event-details">
+								<h4>Required Technical and Professional Expertise</h4><br>
+								<p>{{job.skills}}</p>
+							</div>
+							<div class="single-event-details">
+								<h4>Job Details</h4>
+								<ul class="mt-10">
+									<li class="justify-content-between d-flex">
+										<span>Salary</span>
+										<span>{{job.salary}} per month</span>
+									</li>
+									<li class="justify-content-between d-flex">
+										<span>Experience</span>
+										<span>{{job.experience}} years</span>
+									</li>
+									<li class="justify-content-between d-flex">
+										<span>City</span>
+										<span>{{job.location}}</span>
+									</li>
+								</ul>
+							</div>
+
+							<a href="{% url 'training_placement:login' %}" class="primary-btn text-uppercase">Login to Apply</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End event-details Area -->
+
+{% endblock %}

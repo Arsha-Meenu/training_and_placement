@@ -14,7 +14,7 @@
 								{{job}} details
 							</h1>
 							<p class="text-white link-nav"><a href="{% url 'training_placement:home' %}">Home </a>
-								<span class="lnr lnr-arrow-right"></span>  <a href="{% url 'training_placement:job-detail' %}"> {{job}} details</a></p>
+								<span class="lnr lnr-arrow-right"></span>  <a href="{% url 'training_placement:job-detail' job.id %}"> {{job}} details</a></p>
 						</div>
 					</div>
 				</div>
@@ -64,7 +64,9 @@
 								</ul>
 							</div>
 
-							<a href="{% url 'training_placement:login' %}" class="primary-btn text-uppercase">Login to Apply</a>
+							<button class="btn btn-info ">
+								<a class="btn text-uppercase text-white" href="{% url 'training_placement:apply-job' %}"> Apply as {{job.title}} </a>
+							</button>
 						</div>
 					</div>
 				</div>

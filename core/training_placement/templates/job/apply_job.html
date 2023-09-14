@@ -1,0 +1,57 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Apply Job{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+
+<section class="banner-area relative " id="home">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="about-content col-lg-12 text-white text-uppercase ">
+        {% include 'common/messages.html' %}
+        <form class="container " method="POST" enctype="multipart/form-data" >
+          {% csrf_token %}
+          <div class="row mt-3">
+            <div class=" col-md-6">
+              <label>Applicant Name</label>
+              {{form.name}}
+            </div>
+            <div class=" col-md-6">
+              <label>Email Address</label>
+              {{form.email}}
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class=" col-md-6">
+              <label>Contact Number</label>
+              {{form.mobile_number}}
+            </div>
+            <div class="col-md-6">
+              <label>Current Address</label>
+              {{form.current_address}}
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <label>Upload Resume</label>
+              {{form.upload_resume}}
+            </div>
+            <div class=" col-md-6">
+              <label>User Profile Image</label>
+              {{form.profile_image}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-11">
+              <input type="submit" value="Submit" class="btn mt-3 btn-success" style=" color: white; font-size: larger; width: 8rem;">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

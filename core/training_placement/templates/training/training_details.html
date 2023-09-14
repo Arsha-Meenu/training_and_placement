@@ -1,6 +1,6 @@
 {% extends 'common/base.html' %}
 {% load static %}
-{% block title %}All Jobs{% endblock %}
+{% block title %} Training Details{% endblock %}
 {% block css %}
 {% endblock %}
 {% block content %}
@@ -14,12 +14,13 @@
                     {{training}} details
                 </h1>
                 <p class="text-white link-nav"><a href="{% url 'training_placement:home' %}">Home </a> <span class="lnr lnr-arrow-right"></span>
-                    <a href="{% url 'training_placement:training-detail' %}"> {{training}} details</a></p>
+                    <a href="{% url 'training_placement:training-detail' training.id %}"> {{training}} details</a></p>
             </div>
         </div>
     </div>
 </section>
 <!-- End banner Area -->
+{% include 'common/messages.html' %}
 
 <!-- Start event-details Area -->
 <section class="event-details-area section-gap">
@@ -31,7 +32,6 @@
                         <div class="card-header bg-dark">
                             <h5 class="card-title text-white  h4">{{training.title|upper}}</h5>
                         </div>
-
                         <ul class="list-group text-justify">
                             <li class="list-group-item"><b class="text-dark h5">Subject  &nbsp;: &nbsp;&nbsp;</b> {{training.subject}}</li>
                             <li class="list-group-item"><b class="text-dark h5">Description  &nbsp;: &nbsp;&nbsp;</b> {{training.description}}</li>
@@ -41,7 +41,13 @@
                         </ul>
 
                         <div class="card-footer text-muted">
-                            <button class="btn btn-secondary "><a class="text-uppercase text-white" href="">Login to Enroll</a></button>
+                            <button class="btn btn-info ">
+                                {% if user.is_authenticated %}
+                                <a class="btn text-uppercase text-white" href="{% url 'training_placement:enroll-training' %}"> Enroll</a>
+                                {% else %}
+                                <a class="btn text-uppercase text-white" href="{% url 'training_placement:login' %}">Register to Enroll</a>
+                                {% endif %}
+                            </button>
                         </div>
                     </div>
                 </div>

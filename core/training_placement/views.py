@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
-from .forms import AddJobForm, AddTrainingForm, AddUserForm, UserUpdateForm, PasswordChangingForm
+from .forms import AddJobForm, AddTrainingForm, AddUserForm, UserUpdateForm, PasswordChangingForm, ApplyJobForm
 from .models import Job, Training, User
 
 
@@ -321,3 +321,30 @@ class StudentTrainingsListView(ListView):
         queryset = super().get_queryset()
         return queryset.filter(user=self.request.user)
 
+#
+# class EnrollTrainingView(View):
+#
+#     def get(self, request):
+#         print('get',request.user.id)
+#         training_id = Training.objects.get(user__id=request.user.id).id
+#         print('id', training_id)
+#         messages.success(request, 'You have successfully enrolled.')
+#         return render(request, 'training/training_details.html', {})
+
+
+class ApplyJobView(CreateView):
+    template_name = 'job/apply_job.html'
+    model = Job
+    form_class = ApplyJobForm
+
+    def form_valid(self, form):
+        form.user = self.request.user
+        print('form.user',form.user)
+        obj = form.save(commit=False)
+        obj.type = 'Student'
+        obj.save()
+        return super(ApplyJobView, self).form_valid(form)
+
+    def get_success_url(self, **kwargs):
+        messages.success(self.request, 'successfully applied for the job')
+        return reverse("training_placement:apply-job")

@@ -1,11 +1,12 @@
 from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin)
-from django.core.validators import FileExtensionValidator
+from django.core.validators import FileExtensionValidator, RegexValidator
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 from multiselectfield import MultiSelectField
 from .managers import UserManager
+from django.core.validators import validate_image_file_extension, FileExtensionValidator
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -19,13 +20,18 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     confirm_password = models.CharField(max_length=10)
-    mobile_number = PhoneNumberField(null=True, blank=True, unique=True)
+    phone_regex = RegexValidator(regex=r'^(\+\d{1,3})?,?\s?\d{8,13}',
+                                 message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    mobile_number = PhoneNumberField(null=True, blank=True, unique=True, validators=[phone_regex])
     gender = models.CharField(max_length=2, null=False, choices=GENDER_TYPE, blank=True)
     current_address = models.TextField()
     permanent_address = models.TextField(null=True)
-    profile_image = models.ImageField(upload_to='profile-images', null=True)
+    profile_image = models.ImageField(upload_to='profile-images', null=True, validators=[
+        FileExtensionValidator(["png", "jpg", "jpeg", 'svg', 'webp',  ])])  # for images
     # country = models.ForeignKey('cities_light.Country', on_delete=models.SET_NULL, null=True, blank=True)
     # city = models.ForeignKey('cities_light.City', on_delete=models.SET_NULL, null=True, blank=True)
+    upload_resume = models.FileField(upload_to='uploaded-resume', null=True, blank=True,
+                                     validators=[FileExtensionValidator(["pdf", "doc", "docx", "txt", "mp3", "aac", "m4a", "mp4", "ogg", "odt" ])])
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -57,7 +63,7 @@ class Job(models.Model):
     salary = models.FloatField(null=True, blank=True)
     company_logo = models.FileField(upload_to='company_logo', null=True, verbose_name='company logo',
                                     validators=[FileExtensionValidator(
-                                        ['svg', 'jpg', 'jpeg', 'png', 'webp', 'pdf', 'docx', 'doc', 'xls', 'xlsx',
+                                        ['svg', 'jpg', 'jpeg', 'png', 'webp', 'xls', 'xlsx',
                                          'ppt', 'pptx', 'zip', 'rar', '7zip', 'avif'])])
     description = models.TextField(max_length=400, null=True, blank=True)
     experience = models.CharField(max_length=100, null=True, blank=True)
@@ -82,8 +88,10 @@ class Training(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     description = models.TextField(max_length=400, null=True, blank=True)
     training_date = models.DateField(null=True, blank=True)
+    is_enrolled = models.BooleanField(default=False, blank=True, null=True)
     content_file = models.FileField(upload_to='training_content_file', null=True, verbose_name='training content file',
-                                    validators=[FileExtensionValidator(['pdf', 'docx', 'doc', 'xls', 'xlsx','zip', 'rar', '7zip', 'txt'])])
+                                    validators=[FileExtensionValidator(
+                                        ['pdf', 'docx', 'doc', 'xls', 'xlsx', 'zip', 'rar', '7zip', 'txt'])])
 
     def __str__(self):
         return self.title

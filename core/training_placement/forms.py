@@ -266,7 +266,6 @@ class UserUpdateForm(forms.ModelForm):
                 'placeholder': 'User Email',
                 'required': True,
             })
-
         }
 
 
@@ -281,3 +280,60 @@ class PasswordChangingForm(PasswordChangeForm):
     class Meta:
         model = User
         fields = ('current_password', 'new_password', 'confirm_password ')
+
+
+#
+# CHOICES = [(supervisor.id, supervisor.get_full_name())
+#            for supervisor in User.objects.all()]
+
+
+class ApplyJobForm(forms.ModelForm):
+    # name = forms.ModelChoiceField(queryset=User.objects.all())
+    # supervisor = forms.ChoiceField(choices=CHOICES)
+
+    class Meta:
+        model = User
+        fields = (
+            'name', 'current_address',
+            'profile_image', 'upload_resume',
+            'email',
+            'mobile_number')
+
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 500px;',
+                'placeholder': 'User Name',
+                'required': True
+            }),
+            'upload_resume': forms.FileInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 500px;',
+                'placeholder': 'User Resume'
+            }),
+            'mobile_number': forms.NumberInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 500px;',
+                'placeholder': 'Mobile Number',
+                'required': True
+            }),
+            'current_address': forms.Textarea(attrs={
+                'class': "form-control",
+                'style': 'max-width: 500px;',
+                'placeholder': 'Current Address',
+                'cols': 3, 'rows': 3,
+                'required': True
+            }),
+            'profile_image': forms.FileInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 500px;',
+                'placeholder': 'User Profile Image'
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 500px;',
+                'placeholder': 'User Email',
+                'required': True,
+            })
+
+        }

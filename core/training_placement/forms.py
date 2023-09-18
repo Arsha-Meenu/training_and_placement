@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 
-from .models import User, Job, Training
+from .models import User, Job, Training, JobSelectedUser
 from phonenumber_field.formfields import PhoneNumberField
 
 
@@ -337,3 +337,4 @@ class ApplyJobForm(forms.ModelForm):
             })
 
         }
+

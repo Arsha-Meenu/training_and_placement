@@ -27,11 +27,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     current_address = models.TextField()
     permanent_address = models.TextField(null=True)
     profile_image = models.ImageField(upload_to='profile-images', null=True, validators=[
-        FileExtensionValidator(["png", "jpg", "jpeg", 'svg', 'webp',  ])])  # for images
+        FileExtensionValidator(["png", "jpg", "jpeg", 'svg', 'webp', ])])  # for images
     # country = models.ForeignKey('cities_light.Country', on_delete=models.SET_NULL, null=True, blank=True)
     # city = models.ForeignKey('cities_light.City', on_delete=models.SET_NULL, null=True, blank=True)
     upload_resume = models.FileField(upload_to='uploaded-resume', null=True, blank=True,
-                                     validators=[FileExtensionValidator(["pdf", "doc", "docx", "txt", "mp3", "aac", "m4a", "mp4", "ogg", "odt" ])])
+                                     validators=[FileExtensionValidator(
+                                         ["pdf", "doc", "docx", "txt", "mp3", "aac", "m4a", "mp4", "ogg", "odt"])])
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -70,6 +71,7 @@ class Job(models.Model):
     location = models.CharField(max_length=100, null=True, blank=True)
     skills = models.TextField(max_length=200, null=True, blank=True)
     posted_at = models.DateField(null=True, blank=True)
+    is_applied = models.BooleanField(default=False, blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -95,3 +97,11 @@ class Training(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class JobSelectedUser(models.Model):
+    user = models.ManyToManyField(User, related_name='selected_user')
+    jobs = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='selected_jobs')
+
+    def __str__(self):
+        return self.jobs.title

@@ -8,7 +8,7 @@ from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 from .forms import AddJobForm, AddTrainingForm, AddUserForm, UserUpdateForm, PasswordChangingForm, ApplyJobForm
-from .models import Job, Training, User
+from .models import Job, Training, User, JobSelectedUser
 
 
 class HomeView(TemplateView):
@@ -321,6 +321,7 @@ class StudentTrainingsListView(ListView):
         queryset = super().get_queryset()
         return queryset.filter(user=self.request.user)
 
+
 #
 # class EnrollTrainingView(View):
 #
@@ -331,17 +332,18 @@ class StudentTrainingsListView(ListView):
 #         messages.success(request, 'You have successfully enrolled.')
 #         return render(request, 'training/training_details.html', {})
 
-
 class ApplyJobView(CreateView):
     template_name = 'job/apply_job.html'
-    model = Job
+    model = JobSelectedUser
     form_class = ApplyJobForm
 
     def form_valid(self, form):
         form.user = self.request.user
-        print('form.user',form.user)
         obj = form.save(commit=False)
+        job = Job.objects.get(title = 'Django')
+        jobs = JobSelectedUser.objects.create(jobs=job)
         obj.type = 'Student'
+        jobs.user.add(self.request.user)
         obj.save()
         return super(ApplyJobView, self).form_valid(form)
 

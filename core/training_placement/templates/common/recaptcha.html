@@ -1,0 +1,8 @@
+{% load static %}
+<script type="text/javascript" src="{% static 'v2/js/recaptcha.js' %}"></script>
+<div class="col-8">
+  <div class="form-group">
+    <div class="g-recaptcha" data-theme="light" data-sitekey="{{recaptcha_public_key}}"></div>
+    <div id="captcha-error" class="field-error"></div>
+  </div>
+</div>

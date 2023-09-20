@@ -338,3 +338,15 @@ class ApplyJobForm(forms.ModelForm):
 
         }
 
+
+class SendEmailForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('email',)
+        widgets = {
+            'email': forms.EmailInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 500px;',
+                'placeholder': 'User Email',
+                'required': True,
+            })}

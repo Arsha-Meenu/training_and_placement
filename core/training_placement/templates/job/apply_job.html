@@ -6,23 +6,74 @@
 {% block content %}
 
 <section class="banner-area relative " id="home">
-  <div class="overlay overlay-bg"></div>
-  <div class="container">
-    <div class="row d-flex align-items-center justify-content-center">
-      <div class="about-content col-lg-12 text-white text-uppercase ">
-        {% include 'common/messages.html' %}
-        <form class="container " method="POST" enctype="multipart/form-data" >
-          {% csrf_token %}
-          {{form.as_p}}
-          <div class="row">
-            <div class="col-md-11">
-              <input type="submit" value="Submit" class="btn mt-3 btn-success" style=" color: white; font-size: larger; width: 8rem;">
+    <div class="overlay overlay-bg"></div>
+    <div class="container ">
+
+
+        <div class="row ">
+            <div class="about-content  border">
+
+                <div class="row text-white">
+<!--                    <div class="col-md-12 ">-->
+<!--                        <h3 class="text-info " >Ready to take the next step?</h3>&nbsp;-->
+<!--                        <h6 class="text-warning">Create an account or sign in.</h6><br><br>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-12">-->
+<!--                        <button class="css-pahgg8 e8ju0x51" data-tn-action-click="true"-->
+<!--                                data-tn-element="login-google-button" id="login-google-button">-->
+<!--                            <svg class="css-no0zdi eu4oa1w0" fill="none" height="18" viewBox="0 0 18 18" width="18">-->
+<!--                                <i class="fa fa-google" aria-hidden="true"></i>&nbsp;&nbsp;-->
+<!--                            </svg>-->
+<!--                            <span class="css-zneog5 e1wnkr790">Continue with Google</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-12"><hr>-->
+<!--                        <button class="css-pahgg8 e8ju0x51" data-tn-action-click="true"-->
+<!--                                data-tn-element="login-google-button" id="login-apple-button">-->
+<!--                            <svg class="css-no0zdi eu4oa1w0" fill="none" height="18" viewBox="0 0 18 18" width="18">-->
+<!--                                <i class="fa fa-amazon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--                            </svg>-->
+<!--                            <span class="css-zneog5 e1wnkr790">Continue with Apple</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-12 "><hr><p>or</p></div>-->
+                    <div class="col-md-12">
+
+                        {% if error_message %}
+                        <div class="alert alert-primary" role="alert">
+                            {{error_message}}
+                        </div>
+                        {% endif %}
+
+                        <form class="dd-privacy-allow" enctype="multipart/form-data" method="POST" >
+                            {% csrf_token %}
+<!--                            <div class="css-qu2cx5 e1ttgm5y0" data-tn-action-click="true"-->
+<!--                                 data-tn-element="auth-email-input-form-field">-->
+<!--                                <label class="css-1r655yn es2vvo70" for="ifl-InputFormField-3">-->
+<!--                                    Email address or Mobile-->
+<!--                                    number<span aria-hidden="true" class="css-1t13nic es2vvo71">*</span>-->
+<!--                                </label>-->
+<!--                                <br>-->
+<!--                                <input placeholder="youremail@email.com or 9876543210"-->
+<!--                                       type="email"-->
+<!--                                       value="">-->
+<!--                                <div class="css-kyg8or eu4oa1w0" id="ifl-FormField-errorText-1"></div>-->
+<!--                            </div>-->
+
+                            {{form.as_p}}
+                            <br>
+                            <button type="submit" class="btn btn-primary">Continue</button>
+                        </form>
+                    </div>
+                </div>
+
+
+
             </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+        </div>
 </section>
+
+
+
 
 {% endblock %}

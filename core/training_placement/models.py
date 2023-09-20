@@ -36,6 +36,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
+    is_verified = models.BooleanField(default=False)
+    otp = models.CharField(max_length=6)
 
     class UserTypes(models.TextChoices):
         ADMIN = "Admin", "ADMIN"  # caps ADMIN - for db only

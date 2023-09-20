@@ -1,14 +1,24 @@
-from datetime import date
+import pyotp
+import random
+from datetime import datetime
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.views import LoginView, PasswordChangeView
-from django.http.response import HttpResponse
+from django.core.mail import EmailMessage, send_mail
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
-from .forms import AddJobForm, AddTrainingForm, AddUserForm, UserUpdateForm, PasswordChangingForm, ApplyJobForm
+from .forms import AddJobForm, AddTrainingForm, AddUserForm, UserUpdateForm, PasswordChangingForm, ApplyJobForm, \
+    SendEmailForm
 from .models import Job, Training, User, JobSelectedUser
+from django.contrib.sites.shortcuts import get_current_site
+
+from .utils import send_otp
+from django.template.loader import render_to_string
+from django.views.decorators.csrf import csrf_exempt
 
 
 class HomeView(TemplateView):
@@ -332,21 +342,70 @@ class StudentTrainingsListView(ListView):
 #         messages.success(request, 'You have successfully enrolled.')
 #         return render(request, 'training/training_details.html', {})
 
-class ApplyJobView(CreateView):
+# class ApplyJobView(CreateView):
+#     template_name = 'job/apply_job.html'
+#     model = JobSelectedUser
+#     form_class = ApplyJobForm
+#
+#     def form_valid(self, form):
+#         form.user = self.request.user
+#         obj = form.save(commit=False)
+#         job = Job.objects.get(title='Django')
+#         jobs = JobSelectedUser.objects.create(jobs=job)
+#         obj.type = 'Student'
+#         jobs.user.add(self.request.user)
+#         obj.save()
+#         return super(ApplyJobView, self).form_valid(form)
+#
+#     def get_success_url(self, **kwargs):
+#         messages.success(self.request, 'successfully applied for the job')
+#         return reverse("training_placement:send-otp")
+
+
+class ApplyJobView(View):
+    form_class = SendEmailForm
     template_name = 'job/apply_job.html'
-    model = JobSelectedUser
-    form_class = ApplyJobForm
 
-    def form_valid(self, form):
-        form.user = self.request.user
-        obj = form.save(commit=False)
-        job = Job.objects.get(title = 'Django')
-        jobs = JobSelectedUser.objects.create(jobs=job)
-        obj.type = 'Student'
-        jobs.user.add(self.request.user)
-        obj.save()
-        return super(ApplyJobView, self).form_valid(form)
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
 
-    def get_success_url(self, **kwargs):
-        messages.success(self.request, 'successfully applied for the job')
-        return reverse("training_placement:apply-job")
+    # send email without attachment using smtp.gmail
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            subject = 'Sign in with this one time passcode'
+            email = form.cleaned_data['email']
+            # attachment_path = request.FILES.getlist('attach')
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [email, ]
+            otp = random.randint(100000, 999999)
+            message = f"Verify your mail by the OTP:  {otp}"
+            try:
+                # ### send email with attachment
+                # mail = EmailMessage(subject, message, email_from, recipient_list)
+                # # # for file in attachment_path:
+                # # #     mail.attach(file.name, file.read(), file.content_type)
+                # mail.send()
+
+                # ### sending email with custom template
+                html_content = render_to_string('common/custom_email_template.html',
+                                                {'message': message, 'subject': subject})
+                send_mail(subject, message, email_from, recipient_list, fail_silently=False,html_message= html_content)
+                return render(request, 'common/verify.html',
+                              {'otp': otp, 'email_form': form, 'error_message': 'Sent email to %s' % email})
+
+            except:
+                return render(request, self.template_name,
+                              {'email_form': form, 'error_message': 'Either the attachment is too big or corrupt'})
+
+        return render(request, self.template_name,
+                      {'email_form': form, 'error_message': 'Otp is not correct.Try Again.'})
+
+
+@csrf_exempt
+def VerifyOTP(request):
+    if request.method == 'POST':
+        user_otp = request.POST.get('otp')
+        print("otp:", user_otp)
+    return JsonResponse({'data': 'data'}, status=200)

@@ -47,6 +47,8 @@ urlpatterns = [
     path("training-registration/", views.TrainingRegistrationView.as_view(), name="training-registration"),
     # path("enroll-training/", views.EnrollTrainingView.as_view(), name="enroll-training"),
     path("apply-job/", views.ApplyJobView.as_view(), name="apply-job"),
+    path("verify-email/", views.VerifyOTP, name="verify-email"),
+
 
 
 

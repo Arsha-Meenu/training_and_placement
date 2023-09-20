@@ -1,0 +1,58 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Verify OTP {% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<section class="banner-area relative " id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container ">
+        <div class="row ">
+            <div class="about-content  border">
+                    <div class="col-md-12">
+                        <form class="dd-privacy-allow"  method="POST">
+                            {% csrf_token %}
+                            <div class="css-qu2cx5 e1ttgm5y0" data-tn-action-click="true"
+                                 data-tn-element="auth-email-input-form-field">
+                                <label class="css-1r655yn es2vvo70" >OTP
+                                    <span aria-hidden="true" class="css-1t13nic es2vvo71">*</span>
+                                </label>
+                                <br>
+                                <input placeholder="enter 6 digit otp" type="text" value="" required id="otp" name="otp">
+                                <div class="css-kyg8or eu4oa1w0" id="ifl-FormField-errorText-1"></div>
+                            </div>
+                            <br>
+                            <button>Verify</button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+</section>
+
+<script>
+    $('#otp').change(function(){
+            let otp = $('#otp').val();
+            console.log("otp get: ",otp);
+
+            if (otp == {{otp}} ){
+                console.log("otp matched" );
+
+                $.ajax({
+                    type:'POST',
+                    url: '{% url "training_placement:verify-email" %}',
+                    data : {'otp': otp},
+                    success:function(data){
+                        console.log("OTP verified completed");
+                        window.location.href = '/'
+                    },
+
+                })
+            }
+
+    })
+</script>
+
+
+{% endblock %}

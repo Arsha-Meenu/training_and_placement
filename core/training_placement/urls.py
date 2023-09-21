@@ -50,6 +50,12 @@ urlpatterns = [
     path("verify-email/", views.VerifyOTP, name="verify-email"),
 
 
+#     trial
+    path("send_otp/", views.send_otp, name="send_otp"),
+    path("verify_otp/", views.verify_otp, name="verify_otp"),
+
+
+
 
 
 

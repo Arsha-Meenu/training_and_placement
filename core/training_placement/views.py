@@ -1,3 +1,5 @@
+import math
+
 import pyotp
 import random
 from datetime import datetime
@@ -408,4 +410,47 @@ def VerifyOTP(request):
     if request.method == 'POST':
         user_otp = request.POST.get('otp')
         print("otp:", user_otp)
-    return JsonResponse({'data': 'data'}, status=200)
+    return JsonResponse({'data': 'data'}, status=200)    # return JsonResponse({'data': 'data'}, status=200)
+
+
+
+
+def send_otp(request):
+    if request.method == 'POST':
+        user = request.user
+        email = "mollymeenu143@gmail.com"
+        print('email', email)
+        otp_code = ''.join(random.choice('0123456789') for _ in range(6))
+        # OTP.objects.create(user=user, otp=otp_code)
+
+        # Send OTP via email
+        subject = 'Your OTP for Verification'
+        message = f'Your OTP is: {otp_code}'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [email, ]
+
+        send_mail(subject, message, email_from, recipient_list)
+
+        return JsonResponse({'message': 'OTP sent successfully'})
+    else:
+        return JsonResponse({'error': 'Invalid request method'})
+
+
+def verify_otp(request):
+    if request.method == 'POST':
+        user = request.user
+        otp_code = request.POST.get('otp')
+        print('user', user)
+        user_obj = User.objects.filter(otp=otp_code, is_verified=False).first()
+        if User.objects.filter(otp=otp_code, is_verified=True).exists():
+            return JsonResponse({'error': 'Invalid OTP or OTP already verified'})
+        else:
+            user_obj.is_verified = True
+            user_obj.otp = otp_code
+            user_obj.save()
+            print('op', user_obj.is_verified)
+            return JsonResponse({'message': 'OTP verified successfully'})
+        # else:
+        #     return JsonResponse({'error': 'Invalid OTP or OTP already verified'})
+    else:
+        return JsonResponse({'error': 'Invalid request method'})

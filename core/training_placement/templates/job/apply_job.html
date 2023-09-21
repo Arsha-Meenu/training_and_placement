@@ -62,8 +62,34 @@
 
                             {{form.as_p}}
                             <br>
+
                             <button type="submit" class="btn btn-primary">Continue</button>
                         </form>
+
+
+<!--                        <div>-->
+<!--                            <h2>OTP Verification</h2>-->
+<!--                            <form id="send-otp-form" method="post" enctype="multipart/form-data">-->
+<!--                                {% csrf_token %}-->
+<!--&lt;!&ndash;                                {{form}}&ndash;&gt;-->
+<!--                                <input type="text" placeholder="enter anything" id="email" name="email" value="email"/><br>-->
+<!--                                <button type="submit">Send OTP</button>-->
+<!--                            </form>-->
+<!--                            <div id="otp-response"></div>-->
+<!--                        </div>-->
+
+<!--                        <div>-->
+<!--                            <form id="verify-otp-form">-->
+<!--                                {% csrf_token %}-->
+<!--                                <label for="otp">Enter OTP:</label>-->
+<!--                                <input type="text" id="otp" name="otp" required>-->
+<!--                                <button type="submit">Verify OTP</button>-->
+<!--                            </form>-->
+<!--                            <div id="otp-verify-response"></div>-->
+<!--                        </div>-->
+
+
+
                     </div>
                 </div>
 
@@ -74,6 +100,54 @@
 </section>
 
 
+<!--<script>-->
 
+<!--      // JavaScript to handle sending OTP via AJAX-->
+<!--  document.getElementById('send-otp-form').addEventListener('submit', function (e) {-->
+<!--    e.preventDefault();-->
+
+<!--    fetch('{% url "training_placement:send_otp" %}', {-->
+<!--      method: 'POST',-->
+<!--      headers: {-->
+<!--        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,-->
+<!--      },-->
+<!--    })-->
+<!--      .then(response => response.json())-->
+<!--      .then(data => {-->
+<!--      console.log('data',data);-->
+<!--        document.getElementById('otp-response').innerText = data.message;-->
+<!--      })-->
+<!--      .catch(error => {-->
+<!--        console.error('Error:', error);-->
+<!--        alert('An error occurred.');-->
+<!--      });-->
+<!--  });-->
+
+
+<!--  // JavaScript to handle verifying OTP via AJAX-->
+<!--  document.getElementById('verify-otp-form').addEventListener('submit', function (e) {-->
+<!--    e.preventDefault();-->
+
+<!--    const otp = document.getElementById('otp').value;-->
+<!--    console.log('otp',otp);-->
+<!--    fetch('{% url "training_placement:verify_otp" %}', {-->
+<!--      method: 'POST',-->
+<!--      headers: {-->
+<!--        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,-->
+<!--        'Content-Type': 'application/x-www-form-urlencoded',-->
+<!--      },-->
+<!--      body: `otp=${otp}`,-->
+<!--    })-->
+<!--      .then(response => response.json())-->
+<!--      .then(data => {-->
+<!--      console.log('data',data);-->
+<!--        document.getElementById('otp-verify-response').innerText = data.message;-->
+<!--      })-->
+<!--      .catch(error => {-->
+<!--        console.error('Error:', response);-->
+<!--        alert('An error occurred.',error);-->
+<!--      });-->
+<!--  });-->
+<!--</script>-->
 
 {% endblock %}

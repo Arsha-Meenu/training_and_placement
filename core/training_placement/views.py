@@ -395,14 +395,14 @@ class ApplyJobView(View):
                                                 {'message': message, 'subject': subject})
                 send_mail(subject, message, email_from, recipient_list, fail_silently=False,html_message= html_content)
                 return render(request, 'common/verify.html',
-                              {'otp': otp, 'email_form': form, 'error_message': 'Sent email to %s' % email})
+                              {'otp': otp, 'email_form': form, 'messages': 'Sent email to %s' % email})
 
             except:
                 return render(request, self.template_name,
-                              {'email_form': form, 'error_message': 'Either the attachment is too big or corrupt'})
+                              {'email_form': form, 'messages': 'Either the attachment is too big or corrupt'})
 
         return render(request, self.template_name,
-                      {'email_form': form, 'error_message': 'Otp is not correct.Try Again.'})
+                      {'email_form': form, 'messages': 'Otp is not correct.Try Again.'})
 
 
 @csrf_exempt

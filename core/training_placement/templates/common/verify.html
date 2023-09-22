@@ -6,23 +6,29 @@
 {% block content %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
+
+
+
 <section class="banner-area relative " id="home">
     <div class="overlay overlay-bg"></div>
     <div class="container ">
         <div class="row ">
-            <div class="about-content  border">
+            <div class="about-content  border text-white">
                     <div class="col-md-12">
                         <form class="dd-privacy-allow"  method="POST">
                             {% csrf_token %}
                             <div class="css-qu2cx5 e1ttgm5y0" data-tn-action-click="true"
                                  data-tn-element="auth-email-input-form-field">
-                                <label class="css-1r655yn es2vvo70" >OTP {{otp}}
+                                <h3 class="text-primary">Sign in with one time passcode</h3><br>
+                                <p class="text-center">We've sent your one-time passcode to {{email}}. This passcode will expire after 5 minutes.</p>
+                                <label class="css-1r655yn es2vvo70" > Enter 6 digit code  {{otp}}
                                     <span aria-hidden="true" class="css-1t13nic es2vvo71">*</span>
                                 </label>
                                 <br>
                                 <input placeholder="enter 6 digit otp" type="text" value="" required id="otp" name="otp">
                                 <div class="css-kyg8or eu4oa1w0" id="ifl-FormField-errorText-1"></div>
-                            </div>
+                            </div><br>
+                            <p>Didn't receive your code?</p><a href="" class="text-info"> Send new code</a><br>
                             <br>
                             <button>Verify</button>
                         </form>
@@ -45,7 +51,7 @@
                     data : {'otp': otp},
                     success:function(data){
                         console.log("OTP verified completed");
-                        window.location.href = '/'
+                        window.location.href = '/add-new-user'
                     },
 
                 })

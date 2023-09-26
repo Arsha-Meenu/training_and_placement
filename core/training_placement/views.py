@@ -393,7 +393,7 @@ class ApplyJobView(View):
                 # ### sending email with custom template
                 html_content = render_to_string('common/custom_email_template.html',
                                                 {'message': message, 'subject': subject})
-                send_mail(subject, message, email_from, recipient_list, fail_silently=False,html_message= html_content)
+                send_mail(subject, message, email_from, recipient_list, fail_silently=False, html_message=html_content)
                 return render(request, 'common/verify.html',
                               {'otp': otp, 'email_form': form, 'messages': 'Sent email to %s' % email})
 
@@ -410,9 +410,7 @@ def VerifyOTP(request):
     if request.method == 'POST':
         user_otp = request.POST.get('otp')
         print("otp:", user_otp)
-    return JsonResponse({'data': 'data'}, status=200)    # return JsonResponse({'data': 'data'}, status=200)
-
-
+    return JsonResponse({'data': 'data'}, status=200)  # return JsonResponse({'data': 'data'}, status=200)
 
 
 def send_otp(request):

@@ -26,11 +26,12 @@ logger = logging.getLogger('django')
 
 
 class HomeView(TemplateView):
-    logger.info("logging added")
+    logger.info("logging added in homepage")
     template_name = 'common/index.html'
 
 
 class ContactView(TemplateView):
+    logger.warning("logging added in contact")
     template_name = 'common/contact.html'
 
 
@@ -39,6 +40,7 @@ class AboutUsView(TemplateView):
 
 
 class UserLoginView(LoginView):
+    logger.error("logging added in login")
     form_class = AuthenticationForm
     template_name = 'authentication/login.html'
     fields = "__all__"

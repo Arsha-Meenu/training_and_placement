@@ -143,7 +143,7 @@ LOGGING = {
     "version": 1,
     'loggers': {
         'django': {
-            'handlers': ['file'],
+            'handlers': ['file', 'file_new'],
             'level': 'DEBUG'
         }
     },
@@ -151,7 +151,13 @@ LOGGING = {
         "file": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": "logs/debug_in_views.log",
+            "filename": "logs/debug_in_all_views.log",
+            "formatter": "simpleRe",
+        },
+        "file_new": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "logs/debug_in_more_handlers.log",
             "formatter": "simpleRe",
         },
     },

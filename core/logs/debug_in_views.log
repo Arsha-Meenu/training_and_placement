@@ -1,2 +1,12 @@
 INFO 2023-09-26 08:51:50,351 autoreload 45979 140420915429824 Watching for file changes with StatReloader
 INFO 2023-09-26 08:51:50,362 views 45979 140420915429824 logging added
+INFO 2023-09-26 08:55:48,697 autoreload 45979 140420915429824 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:55:48,982 autoreload 46666 140503801713088 Watching for file changes with StatReloader
+INFO 2023-09-26 08:55:48,996 views 46666 140503801713088 logging added in homepage
+WARNING 2023-09-26 08:55:48,996 views 46666 140503801713088 logging added in contact
+INFO 2023-09-26 08:57:11,929 autoreload 46666 140503801713088 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:57:12,392 autoreload 46880 140232238789056 Watching for file changes with StatReloader
+INFO 2023-09-26 08:57:12,413 views 46880 140232238789056 logging added in homepage
+WARNING 2023-09-26 08:57:12,413 views 46880 140232238789056 logging added in contact
+ERROR 2023-09-26 08:57:12,413 views 46880 140232238789056 logging added in login
+INFO 2023-09-26 08:57:39,821 autoreload 46880 140232238789056 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/core/settings.py changed, reloading.

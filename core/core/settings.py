@@ -4,7 +4,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -15,7 +14,6 @@ SECRET_KEY = "django-insecure-qv77d@20i^ew@8c2whe$p5(thxg@cypot**i%j9o-3pz_8%j)_
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -28,7 +26,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # third party
     'cities_light',
-
 
     'training_placement',
 ]
@@ -63,7 +60,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -86,7 +82,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -105,7 +100,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -117,24 +111,22 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
 MEDIA_URL = 'media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
+    os.path.join(BASE_DIR, 'static')
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 
 AUTH_USER_MODEL = 'training_placement.User'
 
@@ -145,3 +137,29 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "arsha@sayonetech.com"
 EMAIL_HOST_PASSWORD = '928@sayone'
 DEFAULT_FROM_EMAIL = "arsha@sayonetech.com"
+
+# Logging
+LOGGING = {
+    "version": 1,
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG'
+        }
+    },
+    'handlers': {
+        "file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "logs/debug_in_views.log",
+            "formatter": "simpleRe",
+        },
+    },
+    'formatters': {
+        "simpleRe": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+
+    }
+}

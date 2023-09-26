@@ -1,0 +1,27 @@
+INFO 2023-09-26 08:45:17,644 autoreload 44523 140015395656128 Watching for file changes with StatReloader
+INFO 2023-09-26 08:48:12,414 autoreload 44523 140015395656128 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:48:12,792 autoreload 44906 140209658556864 Watching for file changes with StatReloader
+INFO 2023-09-26 08:49:20,505 autoreload 44906 140209658556864 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:49:20,806 autoreload 45055 139821492675008 Watching for file changes with StatReloader
+INFO 2023-09-26 08:49:24,938 autoreload 45055 139821492675008 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:49:25,269 autoreload 45172 140160564990400 Watching for file changes with StatReloader
+INFO 2023-09-26 08:49:27,382 autoreload 45172 140160564990400 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:49:27,701 autoreload 45240 140632922108352 Watching for file changes with StatReloader
+INFO 2023-09-26 08:49:30,801 autoreload 45240 140632922108352 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:49:31,096 autoreload 45288 140020780433856 Watching for file changes with StatReloader
+INFO 2023-09-26 08:49:34,205 autoreload 45288 140020780433856 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:49:34,672 autoreload 45356 139854128480704 Watching for file changes with StatReloader
+INFO 2023-09-26 08:50:17,166 autoreload 45356 139854128480704 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:50:17,470 autoreload 45507 139954531697088 Watching for file changes with StatReloader
+INFO 2023-09-26 08:50:59,919 autoreload 45507 139954531697088 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:51:00,269 autoreload 45630 140305156714944 Watching for file changes with StatReloader
+INFO 2023-09-26 08:51:05,366 autoreload 45630 140305156714944 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:51:05,638 autoreload 45726 140040068370880 Watching for file changes with StatReloader
+INFO 2023-09-26 08:51:12,781 autoreload 45726 140040068370880 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:51:13,144 autoreload 45775 139958413918656 Watching for file changes with StatReloader
+INFO 2023-09-26 08:51:22,341 autoreload 45775 139958413918656 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/training_placement/views.py changed, reloading.
+INFO 2023-09-26 08:51:22,615 autoreload 45831 140110210040256 Watching for file changes with StatReloader
+INFO 2023-09-26 08:51:22,629 views 45831 140110210040256 logging added
+INFO 2023-09-26 08:51:29,755 autoreload 45914 139914356965824 Watching for file changes with StatReloader
+INFO 2023-09-26 08:51:29,768 views 45914 139914356965824 logging added
+INFO 2023-09-26 08:51:50,078 autoreload 45914 139914356965824 /home/sayone/ArshaMeenu_files/Self_Projects_/training_&_placement/core/core/settings.py changed, reloading.

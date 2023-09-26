@@ -1,7 +1,7 @@
 import math
-
 import pyotp
 import random
+import logging
 from datetime import datetime
 from django.conf import settings
 from django.contrib import messages
@@ -22,8 +22,11 @@ from .utils import send_otp
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 
+logger = logging.getLogger('django')
+
 
 class HomeView(TemplateView):
+    logger.info("logging added")
     template_name = 'common/index.html'
 
 

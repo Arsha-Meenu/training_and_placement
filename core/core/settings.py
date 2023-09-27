@@ -28,6 +28,9 @@ INSTALLED_APPS = [
     'cities_light',
 
     'training_placement',
+    # config for flatpages
+    'django.contrib.sites',
+    'django.contrib.flatpages',
 ]
 
 MIDDLEWARE = [
@@ -169,3 +172,5 @@ LOGGING = {
 
     }
 }
+
+SITE_ID = 1  # if not using the sites app
